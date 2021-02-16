@@ -62,3 +62,40 @@ if __name__ == "__main__":
     # times_avg = Sorter.QuickSort(times_avg)
 
     # ADD YOUR CODE TO PLOT times AND times_avg HERE
+
+    #Calculate Quantiles:
+    q1 = np.quantile(times,0.25)
+    q2 = np.quantile(times,0.50)
+    q3 = np.quantile(times,0.75)
+
+    avg_q1 = np.quantile(times_avg,0.25)
+    avg_q2 = np.quantile(times_avg,0.50)
+    avg_q3 = np.quantile(times_avg,0.75)
+
+    #make Npass figure
+    plt.figure()
+    plt.hist(times,Nmeas+150,density=False,alpha=0.75)
+    plt.xlabel('Time between missing cookies[days]')
+    plt.ylabel('Probability')
+    plt.title("rate of 2.00 cookies/day")
+    plt.grid(True)
+    plt.axvline(q1,label="25th Quantile",color="r")
+    plt.axvline(q2,label="50th Quantile",color="g")
+    plt.axvline(q3,label="75th Quantile",color="b")
+    plt.legend()
+    plt.show()
+
+
+
+    plt.figure()
+    plt.hist(times_avg,Nmeas+150,density=False,alpha=0.5,color='r')
+    plt.xlabel('Average time between missing cookies[days]')
+    plt.ylabel('Probability')
+    plt.title("10 measurments/experiment with rate of 2.00 cookies/day")
+    plt.grid(True)
+    plt.axvline(avg_q1,label="25th Quantile",color="b")
+    plt.axvline(avg_q2,label="50th Quantile",color="g")
+    plt.axvline(avg_q3,label="75th Quantile",color="r")
+    plt.legend()
+    plt.show()
+
